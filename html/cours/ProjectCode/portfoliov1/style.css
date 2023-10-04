@@ -1,0 +1,240 @@
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+}
+body {
+    font-family: 'Arial';
+    background: rgb(141, 165, 191);
+}
+header {
+    height: 15vh;
+    width: 100vw;
+    background-color: #BEDDFF;
+    background-size: cover;
+}
+.navbar {
+    position: absolute;
+    padding: 50px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
+    align-items: top;
+}
+.navbar a {
+    color: white;
+    font-size: 1cm;
+    font-weight: bold;
+}
+.navbar .logo {
+    height: 50vh;
+    margin-top: -22vh;
+    margin-left: -8vw
+}
+.navbar .nav-links ul {
+    display: flex;
+
+}
+.navbar .nav-links ul li {
+    margin: 0 80px;
+
+}
+.navbar .nav-links ul li.active a {
+    color: #ff5757;
+}
+.navbar .menu {
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    height: 40px;
+}
+.contacttxt {
+    position: relative;
+    top: 50px;
+    left: 39vw;
+    background-color: #BEDDFF;
+    border-radius: 10px 5px 0px 5px;
+    width: 22vw;
+}
+#contacttxt {
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: underline;
+    font-size: 5.5vh;
+}
+.contact {
+    margin-top: 2vh;
+    margin-left: 2vw;
+}
+.contact ul {
+    display: flex;
+    list-style: none;
+}
+.contact ul li {
+    margin: 6vw;
+}
+.contact #mail {
+    border-radius: 10px;
+    width: 20vw;
+    height: 40vh;
+    background-color: #ff5757;
+}
+.contact #linkdin {
+    border-radius: 10px;
+    width: 20vw;
+    height: 40vh;
+    background-color: #BEDDFF;
+}
+.contact #insta {
+    border-radius: 10px;
+    width: 20vw;
+    height: 40vh;
+    background-color: #febd59;
+}
+/*placement txt dans carré*/
+#mailtxt {
+    position: relative;
+    font-size: 1.5vw;
+    color: white;
+    font-weight: bold;
+    top: 22vh;
+    margin-left: 0.3vw;
+}
+#linkdintxt {
+    position: relative;
+    font-size: 2vw;
+    color: white;
+    font-weight: bold;
+    top: 22vh;
+    margin-left: 3.3vw;
+}
+#instatxt {
+    position: relative;
+    font-size: 2vw;
+    color: white;
+    font-weight: bold;
+    top: 22vh;
+    margin-left: 4.5vw;
+}
+/*placement png dans carré*/
+#mailpng {
+    position: relative;
+    left: 6vw;
+    height: 15vh;
+}
+#linkdinpng {
+    position: relative;
+    top: 1vh;
+    left: 6vw;
+    height: 14vh;
+}
+#instapng {
+    position: relative;
+    left: 6.4vw;
+    top: 1vw;
+    height: 14vh;
+}
+/*position zone cliquable*/
+.linkcontact {
+    position: relative;
+    margin-top: -52vh;
+}
+.linkcontact ul {
+    display: flex;
+    list-style: none;
+}
+.linkcontact ul li#linkmail {
+    position: relative;
+    width: 20vw;
+    height: 40vh;
+    border-radius: 10px;
+    margin-left: 8vw;
+}
+.linkcontact ul li#linklinkdin {
+    position: relative;
+    width: 20vw;
+    height: 40vh;
+    border-radius: 10px;
+    margin-left: 12vw;
+}
+.linkcontact ul li#linkinsta {
+    position: relative;
+    width: 20vw;
+    height: 40vh;
+    border-radius: 10px;
+    margin-left: 12vw;
+}
+/*Cacher les liens*/
+.linkcontact ul li#linkinsta h3 {
+    width: 20vw;
+    height: 40vh;
+    border-radius: 10px;
+    visibility: hidden;
+}
+.linkcontact ul li#linklinkdin h3 {
+    width: 20vw;
+    height: 40vh;
+    border-radius: 10px;
+    visibility: hidden;
+}
+.linkcontact ul li#linkmail h3 {
+    width: 20vw;
+    height: 40vh;
+    border-radius: 10px;
+    visibility: hidden;
+}
+@media screen and (max-width: 1200px) {
+    .navbar {
+        padding: 0;
+    }
+    .navbar .menu {
+        display: block;
+    }
+    .navbar .logo {
+        position: absolute;
+        top: 50px;
+    }
+    .nav-links {
+        top: 0;
+        left: 0;
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.516);
+        backdrop-filter: blur(7px);
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: -100%;
+        transition: all 0.5s ease;
+    }
+    .nav-links.mobile-menu {
+        margin-left: 0;
+    }
+    .nav-links ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .navbar .nav-links ul li {
+        margin: 50px 0;
+    }
+    .contact {
+        display: none;
+    }
+    .contacttxt {
+       width: 80%;
+       left: 10%;
+    }
+    .contacttxt.mobile-menu {
+        position: absolute;
+        left: -100vw;
+    }
+    .linkcontact {
+        display: none;
+    }
+}

@@ -1,0 +1,62 @@
+{
+    "description": "You don't want to f*** with nessie",
+    "developer":
+    {
+        "name": "Shiba Doggo"
+    },
+    "icons":
+    {
+        "512": "icon_512.png"
+    },
+    "manifest_version": 3,
+    "mod":
+    {
+        "license": "license.txt",
+        "payload":
+        {
+            "browser_sounds":
+            {
+                "TAB_CLOSE":
+                [
+                    "sound/close_tab.mp3"
+                ],
+                "TAB_INSERT":
+                [
+                    "sound/new_tab.mp3"
+                ]
+            },
+            "keyboard_sounds":
+            {
+                "TYPING_BACKSPACE":
+                [
+                    "keyboard/backspace.mp3"
+                ],
+                "TYPING_SPACE":
+                [
+                    "keyboard/space.mp3"
+                ]
+            },
+            "wallpaper":
+            {
+                "dark":
+                {
+                    "image": "wallpaper/video.webm",
+                    "first_frame": "wallpaper/first_frame.png",
+                    "text_color": "#FFFFFF",
+                    "text_shadow": "#757575"
+                },
+                "light":
+                {
+                    "image":"wallpaper/video.webm",
+                    "first_frame": "wallpaper/first_frame.png",
+                    "text_color": "#FFFFFF",
+                    "text_shadow": "#0B000E"
+                }
+            }
+
+        },
+        "schema_version": 1
+    },
+    "name": "Don't f*** with nessie",
+    "version": "1.2"
+}

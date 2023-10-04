@@ -1,0 +1,100 @@
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+body nav {
+  height: 70px;
+  padding-top: 20px;
+  background-color: grey;
+  border-radius: 0px 0px 20px 20px;
+  box-shadow: 0px 0px 10px 2px rgb(0, 0, 0);
+}
+body nav .logo {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 50px;
+}
+body nav .HambMenu {
+  display: none;
+}
+body nav .Menu {
+  display: none;
+}
+body nav ul {
+  display: flex;
+  justify-content: space-evenly;
+  list-style: none;
+}
+body nav ul li {
+  font-size: 1.8rem;
+  transition: all ease 200ms;
+  color: black;
+  font-weight: bold;
+}
+body nav ul li:hover {
+  color: white;
+  cursor: pointer;
+  background-color: black;
+  padding: 1rem;
+  padding-top: 0.5rem;
+  border-radius: 1rem;
+  transition: all ease 200ms;
+}
+body h1 {
+  text-align: center;
+  text-decoration: underline;
+  margin-top: 50px;
+}
+
+@media screen and (max-width: 700px) {
+  body nav ul {
+    display: none;
+  }
+  body nav h2 {
+    text-align: center;
+  }
+  body nav .HambMenu {
+    display: block;
+  }
+  body nav img.HambMenu {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    z-index: 2;
+  }
+  body nav .Menu {
+    display: block;
+    transform: translateX(100%);
+    transition: all ease 400ms;
+  }
+  body nav .Menu.On {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    -webkit-backdrop-filter: blur(7px);
+            backdrop-filter: blur(7px);
+    transition: all ease 400ms;
+    transform: translateX(0%);
+  }
+  body nav .Menu.On ul {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+  }
+  body nav .Menu.On ul li {
+    margin-left: auto;
+    margin-right: auto;
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+  body nav .Menu.On ul li:hover {
+    background-color: black;
+    padding: 10px;
+    color: white;
+  }
+}/*# sourceMappingURL=style.css.map */

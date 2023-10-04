@@ -1,0 +1,30 @@
+*{
+    margin: 0;
+    padding: 0;
+    background-color: grey;
+}
+
+h1 {
+    text-align: center;
+    
+
+}
+@keyframes color-change {
+    0% {
+      color: var(--color1);
+    }
+    33% {
+      color: var(--color3);
+    }
+    66% {
+      color: var(--color2);
+    }
+    100% {
+      color: var(--color1);
+    }
+}
+:root {
+    --color1: #2d4893;
+    --color2: #f59658;
+    --color3: #c74770;
+}

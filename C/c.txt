@@ -1,0 +1,38 @@
+IDE pour C/C++ : Eclipsee
+(Pour C : Code::Blocks)
+
+Variable environement : 
+
+C:\minGW\bin
+
+minGW : 
+-minGW gcc bin
+-minGW gdb bin
+
+compiler : 
+
+gcc "filename" -o "exe name"
+
+unsigned : entre 0 et x
+
+
+afficher la memoire;
+
+int main() { 
+
+    int a = 18;
+
+
+
+    printf("Mon nombre %d prend %d", a ,sizeof(a));
+
+    return 0;
+}
+
+afficher chaîne char :
+
+char hello_world[6] = {'H', 'E', 'L', 'L', 'O', '\0'};
+printf("%s", hello_world)
+
+\0 a la fin de la chaîne
+

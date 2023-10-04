@@ -1,0 +1,118 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+
+    .container {
+        width: 100%;
+        height: 100%;
+        scroll-snap-type: y mandatory;
+        overflow-y: scroll;
+
+        .navbar {
+            width: 100vw;
+            height: 100px;
+            background-color: rgb(15,15,15);
+            display: flex;
+            color: white;
+
+            &:nth-of-type(2) {
+                background-color: rgb(25, 25, 25);
+            }
+            &:nth-of-type(3) {
+                background-color: rgb(35,35,35);
+            }
+
+        
+
+
+            div {
+                display: flex;
+                align-items: center;
+                margin-left: auto;
+                margin-right: auto;
+
+                div {
+                    transition: all 200ms ease;
+
+                    a {
+                        font-size: 2em;
+                        margin-left: 5em;
+                        margin-right: 5em;
+                        text-decoration: none;
+                        color: white;
+                        font-weight: bold;
+                    }
+
+                }
+            
+            }
+
+            .first {
+                div:hover {
+                    border-radius: 1rem;
+                    background-color: rgb(25, 25, 25);
+                    height: 3em;
+                    transition: all 200ms ease-in;
+                    cursor: pointer;
+                }
+            }
+
+            .sec {
+                div:hover {
+                    border-radius: 1rem;
+                    background-color: rgb(35, 35, 35);
+                    height: 3em;
+                    transition: all 200ms ease-in;
+                    cursor: pointer;
+                }
+            }
+
+            .third {
+                div:hover {
+                    border-radius: 1rem;
+                    background-color: rgb(45, 45, 45);
+                    height: 3em;
+                    transition: all 200ms ease-in;
+                    cursor: pointer;
+                }
+            }
+            
+
+        }
+
+        section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            height: calc(100vh - 100px);
+            scroll-snap-align: start;
+            scroll-margin-top: 100px;
+
+            &:nth-of-type(1) {
+                background-color: rgb(25,25,25);
+                color: green;
+            }
+
+            &:nth-of-type(2) {
+                background-color: rgb(35,35,35);
+                color: blue;
+            }
+
+            &:nth-of-type(3) {
+                background-color: rgb(45,45,45);
+                color: red;
+            }
+
+            h1 {
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 15em;
+            }
+        }
+    }
+
+    footer {
+        text-align: center;
+    }
+}

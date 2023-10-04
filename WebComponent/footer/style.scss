@@ -1,0 +1,58 @@
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+body {
+
+    h1 {
+        text-decoration: underline;
+        text-align: center;
+        margin-top: 30px;
+    }
+    
+    footer {
+
+        margin-top: 50px;
+
+        div {
+            display: flex;
+            justify-content: space-evenly;
+
+            .FootSharedStyle {
+                list-style: none;
+
+                .FootTitle {
+                    font-size: 1.5rem;
+                    font-weight: 600;
+                    text-decoration: underline;
+                }
+
+                .FootContent{
+                    line-height: 20px;
+                    transition: all ease 200ms;
+
+                    img {
+                        width: 20px;
+                    }
+                }
+
+                .FootContent:hover {
+                    font-size: 1.25rem;
+                    font-weight: bold;
+                    transition: all ease 200ms;
+                    cursor: pointer;
+                }
+            }
+
+
+        }
+
+        h5 {
+            margin-top: 30px;
+            color: grey;
+            text-align: center;
+        }
+    }
+}
