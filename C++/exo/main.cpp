@@ -3,25 +3,28 @@
 #include <stdio.h>
 #include <cstdlib>
 
+// class Rectangle {
 
-class Rectangle {
+//     public:
 
-    int width;
-    int height;
+//         int width;
+//         int height;
 
-    int area() {
-        return width * height;
-    }
+//         int area() {
+//             return width * height;
+//         }
 
-};
+// };
 
 
-int main (void) {
+// int main (void) {
 
-    Rectangle rect = Rectangle();
-    rect.width = 10;
-    rect.height = 20;
-    std::cout << rect.area() << endl;
+//     Rectangle rect;
 
-    return 0;
-}
+//     std::cout << "Entré la longeur puis la largeur du rectangle" << std::endl;
+//     std::cin >> rect.width >>  rect.height;
+//     std::cout << "Air du rectangle " << rect.area() << std::endl;
+
+//     return 0;
+// }
+
