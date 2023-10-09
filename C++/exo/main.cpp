@@ -3,28 +3,32 @@
 #include <stdio.h>
 #include <cstdlib>
 
-// class Rectangle {
+class Rectangle {
 
-//     public:
+    public:
 
-//         int width;
-//         int height;
+        int width;
+        int height;
 
-//         int area() {
-//             return width * height;
-//         }
+        int area() {
+            return width * height;
+        }
 
-// };
+};
 
 
-// int main (void) {
+int main (void) {
 
-//     Rectangle rect;
+    Rectangle rect;
 
-//     std::cout << "Entré la longeur puis la largeur du rectangle" << std::endl;
-//     std::cin >> rect.width >>  rect.height;
-//     std::cout << "Air du rectangle " << rect.area() << std::endl;
+    std::cout << "Entré la longeur puis la largeur du rectangle" << std::endl;
+    std::cin >> rect.width >>  rect.height;
+    if (rect.width == rect.height) {
+        std::cout << "Air du carré" << rect.area() << std::endl;
+    } else {
+        std::cout << "Air du rectangle " << rect.area() << std::endl;
+    }
 
-//     return 0;
-// }
+    return 0;
+}
 
