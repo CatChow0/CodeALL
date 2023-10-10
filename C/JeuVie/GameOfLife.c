@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>           //Librairi Integration Temps
-#include <SDL2/SDL.h>       //Librairi Interface Graphique
+#include <SDL2/SDL.h>       Librairi Interface Graphique
 // #include <SDL2/SDL_ttf.h>   //Librairi Text
 
 // --------------------------------------------------------- //
