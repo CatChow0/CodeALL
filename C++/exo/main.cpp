@@ -3,21 +3,20 @@
 #include <stdio.h>
 #include <cstdlib>
 
-// class Rectangle {
+// void exo1() {
+
+//     class Rectangle {
 
 //     public:
 
 //         int width;
 //         int height;
 
-//         int area() {
-//             return width * height;
+//          int area() {
+//              return width * height;
 //         }
 
-// };
-
-
-// int main (void) {
+//     };
 
 //     Rectangle rect;
 
@@ -27,10 +26,20 @@
 //         std::cout << "Air du carré" << rect.area() << std::endl;
 //     } else {
 //         std::cout << "Air du rectangle " << rect.area() << std::endl;
-//     }
+//      }
 
-//     return 0;
 // }
 
 // Exo 2 Initialize a custom array class with numbers 
 
+void exo2() {
+
+
+}
+
+int main (void) {
+
+    // exo1();
+    exo2();
+
+}
