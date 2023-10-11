@@ -1,10 +1,10 @@
 Id: 1
-Nom: Bob
+Nom: Vroum
 Health: 12
 Attack: 9
 Defense: 12
 Id: 2
-Nom: Vroum
+Nom: Bob
 Health: 15
 Attack: 6
 Defense: 17

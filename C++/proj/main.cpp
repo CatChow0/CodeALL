@@ -98,6 +98,7 @@ std::string attribute_pokemon_to_player(std::string Default_Pokemon) {
 
 std::string rename_Pokemon(std::string Player_Pokemon) {
     int rename_choice = 1;
+    std::string res;
 
     while (rename_choice == 1) {
 
@@ -109,7 +110,7 @@ std::string rename_Pokemon(std::string Player_Pokemon) {
             rename_choice = 0;
             std::cout << "Vous n'avez selectioner aucune des options disponible" << std::endl;
         } else if (rename_choice == 1) { // Sort de la boucle si le joueur ne veut pas renommer son pokemon
-            return Player_Pokemon;
+            res = Player_Pokemon;
         } else {
             std::cout << "Entre le nouveau nom du pokemon" << std::endl;
             std::cin >> Player_Pokemon;
@@ -119,6 +120,7 @@ std::string rename_Pokemon(std::string Player_Pokemon) {
         };      
     };
 
+    return res;
 };
 
 // Donne les informations du pokemon
@@ -260,7 +262,20 @@ std::string Current_Pokemon_Name(int Player_pokemon_Id) {
     std::string Player_Pokemon_Id_String = std::to_string(Player_pokemon_Id);
     std::string Id_to_find = Id + Player_Pokemon_Id_String;
 
-    return Id_to_find;
+    std::ifstream Pokemon_File;
+    Pokemon_File.open("Pokemon.txt", std::ios::in);
+
+    std::string Pokemon_Name;
+    while (std::getline(Pokemon_File,Pokemon_Name)) {
+        if (Pokemon_Name.find(Id_to_find) != std::string::npos) {
+            break;
+        };
+    };
+    std::getline(Pokemon_File,Pokemon_Name, ' ');
+    std::getline(Pokemon_File,Pokemon_Name);
+    std::cout << "El poutras " << Pokemon_Name << std::endl;
+
+    return Pokemon_Name;
 };
 
 // ------ //
@@ -268,7 +283,6 @@ std::string Current_Pokemon_Name(int Player_pokemon_Id) {
 // ------ //
 
 void fight(int Player_Starter_Id, int Enemy_Starter_Id) {
-
 
 };
 
