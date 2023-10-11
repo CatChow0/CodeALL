@@ -11,7 +11,7 @@
 class Character {
 
     public: 
-    
+
         int pokemon_id;
         char name[20];
         int health;
@@ -81,19 +81,55 @@ void Create_Pokemon() {
 
 };
 
+// ----------------------------- //
+// Attribut le Pokemon au joueur //
+// ----------------------------- //
+
+std::string attribute_pokemon_to_player(std::string Default_Pokemon) {
+    std::string Player_Pokemon_Name = Default_Pokemon;
+
+    return Player_Pokemon_Name;
+};
+
+// ---------------------------- //
+// Renomme le Pokemon du joueur //
+// ---------------------------- //
+
+std::string rename_Pokemon(std::string Player_Pokemon) {
+    int rename_choice = 1;
+
+    while (rename_choice == 1) {
+
+        std::cout << "Voulez-vous renommer votre pokemon de depart?" << std::endl << "Oui [0] || Non [1]" << std::endl;
+        std::cin >> rename_choice;
+
+        // Empeche de choisir une option qui n'existe pas
+        if (rename_choice > 1 || rename_choice < 0) {
+            rename_choice = 0;
+            std::cout << "Vous n'avez selectioner aucune des options disponible" << std::endl;
+        } else if (rename_choice == 1) { // Sort de la boucle si le joueur ne veut pas renommer son pokemon
+            return Player_Pokemon;
+        } else {
+            std::cout << "Entre le nouveau nom du pokemon" << std::endl;
+            std::cin >> Player_Pokemon;
+            std::cout << "Valider le choix : \"" << Player_Pokemon << "\" " << std::endl << "Oui [0] || Non [1]" << std::endl;
+            std::cin >> rename_choice;
+            
+        };      
+    };
+
+};
+
 // ---------------------------------------- //
 // Fonction pour choisir le premier pokemon //
 // ---------------------------------------- //
 
-int pokemon_choice() {
+int Player_pokemon_choice() {
 
-    int player_pokemon_id = 0;
+    int player_pokemon_choice = 0;
     std::string Default_Pokemon_Name_1;
     std::string Default_Pokemon_Name_2;
     std::string Default_Pokemon_Name_3;
-
-
-    // Boucle qui permet de choisir le premier pokemon
 
     // Ouvre le fichier Pokemon.txt et lit le Nom des 3 premier Pokemon //
 
@@ -126,23 +162,26 @@ int pokemon_choice() {
     // Propose au joueur de choisir son premier pokemon //
     // ------------------------------------------------ //
 
-    int rename_choice = 1;
     int end_of_choice = 1;
+    std::string Player_Pokemon_Name;
     while (end_of_choice == 1) {
         std::cout << "Entre le numeros pour choisir ton pokemon de depart" << std::endl;
         std::cout << Default_Pokemon_Name_1 << " [1]," << Default_Pokemon_Name_2 << " [2],"<< Default_Pokemon_Name_3 << " [3]" << std::endl;
-        std::cin >> player_pokemon_id;
+        std::cin >> player_pokemon_choice;
 
-        switch (player_pokemon_id)
+        switch (player_pokemon_choice)
         {
         case 1:
             std::cout << "Vous avez selectioner " << Default_Pokemon_Name_1 << " de type Feu "<< std::endl;
+            Player_Pokemon_Name = attribute_pokemon_to_player(Default_Pokemon_Name_1);
             break;
         case 2:
             std::cout << "Vous avez selectioner " << Default_Pokemon_Name_2 << " de type Eau" << std::endl;
+            Player_Pokemon_Name = attribute_pokemon_to_player(Default_Pokemon_Name_2);
             break;
         case 3:
             std::cout << "Vous avez selectioner " << Default_Pokemon_Name_3 << " de type Plante" << std::endl;
+            Player_Pokemon_Name = attribute_pokemon_to_player(Default_Pokemon_Name_3);
             break;
         default:
             break;
@@ -159,22 +198,49 @@ int pokemon_choice() {
         };
     };
 
-    while (rename_choice == 1) {
+    // Propose au joueur de choisir le nom de son premier pokemon //
 
-        std::cout << "Entre le nouveau nom du pokemon" << std::endl;
-        std::cin >> Default_Pokemon_Name_1;
-        std::cout << "Valider le choix : " << std::endl << "Oui [0] || Non [1]" << std::endl;
-        std::cin >> rename_choice;
+    Player_Pokemon_Name = rename_Pokemon(Player_Pokemon_Name); // Réattribut le nom du pokemon au joueur
+    
 
-        if (rename_choice > 1 || rename_choice < 0) {
-            rename_choice = 0;
-            std::cout << "Vous n'avez selectioner aucune des options disponible" << std::endl;
-        };
-    };
+    return (player_pokemon_choice);
+};
+
+// ----------------------- //
+// Choix du pokemon enemie //
+// ----------------------- //
+
+int Enemy_pokemon_choice(int Player_pokemon_Id) {
+    int enemy_pokemon_choice = 0;
+
+    switch (Player_pokemon_Id)
+    {
+    case 1: // Pokemon de type Feu pour le joueur
+        enemy_pokemon_choice = 2;
+        break;
+    case 2: // Pokemon de type Eau pour le joueur
+        enemy_pokemon_choice = 3;
+        break;
+    case 3: // Pokemon de type Plante pour le joueur
+        enemy_pokemon_choice = 1;
+        break;
+    
+    default:
+        enemy_pokemon_choice = 1; // L'enemie l'Id 1 par defaut
+        break;
+    }
+
+    return (enemy_pokemon_choice);
+};
+
+// ------ //
+// Combat //
+// ------ //
+
+void fight(int Player_Pokemon_Id, int Enemy_Pokemon_Id) {
 
 
-    return (player_pokemon_id);
-}
+};
 
 // ------------------- //
 // Fonction principale //
@@ -184,9 +250,15 @@ int main() {
 
     std::cout << "Bonjour jeune margoulin" << std::endl;
 
-    int pokemon_id = pokemon_choice();
+    int Player_Pokemon_Id = Player_pokemon_choice();
 
-    Create_Pokemon();
+    int Enemy_Pokemon_Id = Enemy_pokemon_choice(Player_Pokemon_Id);
+
+
+
+
+    // Permet d'ajouter un nouveau pokemon dans le fichier Pokemon.txt
+    // Create_Pokemon(); 
 
     return 0;
 }
