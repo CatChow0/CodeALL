@@ -1,0 +1,15 @@
+Id: 1
+Nom: Bob
+Health: 12
+Attack: 9
+Defense: 12
+Id: 2
+Nom: Vroum
+Health: 15
+Attack: 6
+Defense: 17
+Id: 3
+Nom: Patate
+Health: 10
+Attack: 10
+Defense: 10

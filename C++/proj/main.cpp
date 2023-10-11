@@ -3,6 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <vector>
 
 // ------------------ //
 // Class des pokemons //
@@ -52,16 +53,16 @@ void Create_Pokemon() {
     std::cin >> Create_Pokemon.name;
     std::cout << "Entrez la vie du Pokemon : ";
     std::cin >> Create_Pokemon.health;
-    std::cout << "Entrez la base d'attaque du Pokemon : ";
+    std::cout << "Entrez l'attaque de base du Pokemon : ";
     std::cin >> Create_Pokemon.base_attack;
-    std::cout << "Entrez la base de defense du Pokemon : ";
+    std::cout << "Entrez la defense de base du Pokemon : ";
     std::cin >> Create_Pokemon.base_defense;
     
 
     // Affiche les informations du pokemon creé
 
-    std::cout << "Id du Pokemon : " << Create_Pokemon.pokemon_id << std::endl;
     std::cout << "Pokemon cree avec succes!" << std::endl;
+    std::cout << "Id du Pokemon : " << Create_Pokemon.pokemon_id << std::endl;
     std::cout << "Nom du Pokemon : " << Create_Pokemon.name << std::endl;
     std::cout << "Vie du Pokemon : " << Create_Pokemon.health << std::endl;
     std::cout << "Base d'attaque du Pokemon : " << Create_Pokemon.base_attack << std::endl;
@@ -119,6 +120,26 @@ std::string rename_Pokemon(std::string Player_Pokemon) {
     };
 
 };
+
+// Donne les informations du pokemon
+
+// char Get_Pokemon_Info(int Id) {
+
+//     std::ifstream Pokemon_file;
+//     Pokemon_file.open("Pokemon.txt", std::ios::in);
+//     std::string info;
+
+//     for (int i = 0; i < 4;i++) {
+//         std::getline(Pokemon_file, info);
+//     };
+
+//     Character Current_Pokemon;
+
+
+
+// };
+
+
 
 // ---------------------------------------- //
 // Fonction pour choisir le premier pokemon //
@@ -185,7 +206,7 @@ int Player_pokemon_choice() {
             break;
         default:
             break;
-        }
+        };
 
         std::cout << "Valider le choix : " << std::endl << "Oui [0] || Non [1]" << std::endl;
         std::cin >> end_of_choice;
@@ -203,7 +224,7 @@ int Player_pokemon_choice() {
     Player_Pokemon_Name = rename_Pokemon(Player_Pokemon_Name); // Réattribut le nom du pokemon au joueur
     
 
-    return (player_pokemon_choice);
+    return player_pokemon_choice;
 };
 
 // ----------------------- //
@@ -233,11 +254,20 @@ int Enemy_pokemon_choice(int Player_pokemon_Id) {
     return (enemy_pokemon_choice);
 };
 
+std::string Current_Pokemon_Name(int Player_pokemon_Id) {
+
+    std::string Id = "Id: ";
+    std::string Player_Pokemon_Id_String = std::to_string(Player_pokemon_Id);
+    std::string Id_to_find = Id + Player_Pokemon_Id_String;
+
+    return Id_to_find;
+};
+
 // ------ //
 // Combat //
 // ------ //
 
-void fight(int Player_Pokemon_Id, int Enemy_Pokemon_Id) {
+void fight(int Player_Starter_Id, int Enemy_Starter_Id) {
 
 
 };
@@ -250,11 +280,25 @@ int main() {
 
     std::cout << "Bonjour jeune margoulin" << std::endl;
 
-    int Player_Pokemon_Id = Player_pokemon_choice();
+    int Player_Starter_Id = Player_pokemon_choice();
 
-    int Enemy_Pokemon_Id = Enemy_pokemon_choice(Player_Pokemon_Id);
+    int Enemy_Starter_Id = Enemy_pokemon_choice(Player_Starter_Id);
+
+    std::string Player_Starter_Name = Current_Pokemon_Name(Player_Starter_Id);
+    std::cout << Player_Starter_Name << std::endl;
+    int Player_Starter_Health;
+    int Player_Starter_Attack;
+    int Player_Starter_Defense;
+
+    std::string Enemy_starter_Name;
+    int Enemy_Starter_Health;
+    int Enemy_Starter_Attack;
+    int Enemy_Starter_Defense;
+    
 
 
+
+    // fight(Player_Starter_Id, Enemy_Starter_Id);
 
 
     // Permet d'ajouter un nouveau pokemon dans le fichier Pokemon.txt
