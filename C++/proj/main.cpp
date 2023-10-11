@@ -59,22 +59,23 @@ void Create_Pokemon() {
 
     // Affiche les informations du pokemon creé
 
+    std::cout << "Id du Pokemon : " << Create_Pokemon.pokemon_id << std::endl;
     std::cout << "Pokemon cree avec succes!" << std::endl;
     std::cout << "Nom du Pokemon : " << Create_Pokemon.name << std::endl;
     std::cout << "Vie du Pokemon : " << Create_Pokemon.health << std::endl;
     std::cout << "Base d'attaque du Pokemon : " << Create_Pokemon.base_attack << std::endl;
     std::cout << "Base de defense du Pokemon : " << Create_Pokemon.base_defense << std::endl;
-    std::cout << "Id du Pokemon : " << Create_Pokemon.pokemon_id << std::endl;
+    
 
     // Ouvre ou Crée un fichier pour stocker les pokemons
 
     std::ofstream Create_Pokemon_File;
+    Create_Pokemon_File << "Id: " <<Create_Pokemon.pokemon_id << std::endl;
     Create_Pokemon_File.open("Pokemon.txt", std::ios::out | std::ios::app);
     Create_Pokemon_File << "Nom: " <<Create_Pokemon.name << std::endl;
     Create_Pokemon_File << "Health: " <<Create_Pokemon.health << std::endl;
     Create_Pokemon_File << "Attack: " <<Create_Pokemon.base_attack << std::endl;
     Create_Pokemon_File << "Defense: " <<Create_Pokemon.base_defense << std::endl;
-    Create_Pokemon_File << "Id: " <<Create_Pokemon.pokemon_id << std::endl;
     Create_Pokemon_File.close();
 
 };
@@ -86,9 +87,9 @@ void Create_Pokemon() {
 int pokemon_choice() {
 
     int player_pokemon_id = 0;
-    char Default_Pokemon_Name_1[20];
-    char Default_Pokemon_Name_2[20];
-    char Default_Pokemon_Name_3[20];
+    std::string Default_Pokemon_Name_1;
+    std::string Default_Pokemon_Name_2;
+    std::string Default_Pokemon_Name_3;
 
 
     // Boucle qui permet de choisir le premier pokemon
@@ -97,18 +98,32 @@ int pokemon_choice() {
 
     std::ifstream Pokemon_File;
     Pokemon_File.open("Pokemon.txt", std::ios::in);
-    std::string line;
-    std::getline(Pokemon_File, line) >> Default_Pokemon_Name_1;
-    std::getline(Pokemon_File, line) >> Default_Pokemon_Name_2;
-    std::getline(Pokemon_File, line) >> Default_Pokemon_Name_3;
+    std::string name;
+    std::getline(Pokemon_File, name);
+    std::getline(Pokemon_File, name, ' ');
+    std::getline(Pokemon_File, name);
+    Default_Pokemon_Name_1 = name;
+
+    for (int i = 0; i < 4; i++) {
+        std::getline(Pokemon_File, name);
+    };
+
+    std::getline(Pokemon_File, name, ' ');
+    std::getline(Pokemon_File, name);
+    Default_Pokemon_Name_2 = name;
+
+    for (int i = 0; i < 4; i++) {
+        std::getline(Pokemon_File, name);
+    };
+
+    std::getline(Pokemon_File, name, ' ');
+    std::getline(Pokemon_File, name);
+    Default_Pokemon_Name_3 = name;
     Pokemon_File.close();
 
-    // 
-
-    // Affiche les noms des 3 premiers Pokemon //
-    std::cout << "Nom du Pokemon 1 : " << Default_Pokemon_Name_1 << std::endl;
-    std::cout << "Nom du Pokemon 2 : " << Default_Pokemon_Name_2 << std::endl;
-    std::cout << "Nom du Pokemon 3 : " << Default_Pokemon_Name_3 << std::endl;
+    // ------------------------------------------------ //
+    // Propose au joueur de choisir son premier pokemon //
+    // ------------------------------------------------ //
 
     int end_of_choice = 0;
     while (end_of_choice == 0) {
@@ -146,7 +161,7 @@ int pokemon_choice() {
 }
 
 // ------------------- //
-// Focntion principale //
+// Fonction principale //
 // ------------------- //
 
 int main() {
