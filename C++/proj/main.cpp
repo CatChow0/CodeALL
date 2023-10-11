@@ -99,6 +99,11 @@ int pokemon_choice() {
     std::ifstream Pokemon_File;
     Pokemon_File.open("Pokemon.txt", std::ios::in);
     std::string name;
+
+    for (int i = 0; i < 5; i++) {
+        
+    };
+
     std::getline(Pokemon_File, name);
     std::getline(Pokemon_File, name, ' ');
     std::getline(Pokemon_File, name);
