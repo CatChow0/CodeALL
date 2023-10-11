@@ -11,12 +11,13 @@
 class Character {
 
     public: 
-
+    
+        int pokemon_id;
         char name[20];
         int health;
         int base_attack;
         int base_defense;
-        int pokemon_id;
+        
     
     class Fire_type {
         public:
@@ -45,7 +46,8 @@ void Create_Pokemon() {
     Character Create_Pokemon;
 
     // Demande les informations du pokemon
-
+    std::cout << "Entrez l'id du Pokemon : ";
+    std::cin >> Create_Pokemon.pokemon_id;
     std::cout << "Entrez le nom du Pokemon : ";
     std::cin >> Create_Pokemon.name;
     std::cout << "Entrez la vie du Pokemon : ";
@@ -54,8 +56,7 @@ void Create_Pokemon() {
     std::cin >> Create_Pokemon.base_attack;
     std::cout << "Entrez la base de defense du Pokemon : ";
     std::cin >> Create_Pokemon.base_defense;
-    std::cout << "Entrez l'id du Pokemon : ";
-    std::cin >> Create_Pokemon.pokemon_id;
+    
 
     // Affiche les informations du pokemon creé
 
@@ -70,8 +71,8 @@ void Create_Pokemon() {
     // Ouvre ou Crée un fichier pour stocker les pokemons
 
     std::ofstream Create_Pokemon_File;
-    Create_Pokemon_File << "Id: " <<Create_Pokemon.pokemon_id << std::endl;
     Create_Pokemon_File.open("Pokemon.txt", std::ios::out | std::ios::app);
+    Create_Pokemon_File << "Id: " <<Create_Pokemon.pokemon_id << std::endl;
     Create_Pokemon_File << "Nom: " <<Create_Pokemon.name << std::endl;
     Create_Pokemon_File << "Health: " <<Create_Pokemon.health << std::endl;
     Create_Pokemon_File << "Attack: " <<Create_Pokemon.base_attack << std::endl;
@@ -99,18 +100,13 @@ int pokemon_choice() {
     std::ifstream Pokemon_File;
     Pokemon_File.open("Pokemon.txt", std::ios::in);
     std::string name;
+    std::getline(Pokemon_File, name);       // Récupère la premiere ligne (ID)
+    std::getline(Pokemon_File, name, ' ');  // Récupère le nom de la variable et écrase les donnés de la première ligne
+    std::getline(Pokemon_File, name);       // Récupère la valeur de la variable et écrase le nom de la variable
+    Default_Pokemon_Name_1 = name;          // stocke le nom de la deuxieme variable dans la variable Default_Pokemon_Name_1
 
-    for (int i = 0; i < 5; i++) {
-        
-    };
-
-    std::getline(Pokemon_File, name);
-    std::getline(Pokemon_File, name, ' ');
-    std::getline(Pokemon_File, name);
-    Default_Pokemon_Name_1 = name;
-
-    for (int i = 0; i < 4; i++) {
-        std::getline(Pokemon_File, name);
+    for (int i = 0; i < 4; i++) {           // Saute 4 ligne pour récupérer le nom de la variable suviante comme l'écart entre les variable est constants
+        std::getline(Pokemon_File, name); 
     };
 
     std::getline(Pokemon_File, name, ' ');
@@ -130,8 +126,9 @@ int pokemon_choice() {
     // Propose au joueur de choisir son premier pokemon //
     // ------------------------------------------------ //
 
-    int end_of_choice = 0;
-    while (end_of_choice == 0) {
+    int rename_choice = 1;
+    int end_of_choice = 1;
+    while (end_of_choice == 1) {
         std::cout << "Entre le numeros pour choisir ton pokemon de depart" << std::endl;
         std::cout << Default_Pokemon_Name_1 << " [1]," << Default_Pokemon_Name_2 << " [2],"<< Default_Pokemon_Name_3 << " [3]" << std::endl;
         std::cin >> player_pokemon_id;
@@ -161,6 +158,20 @@ int pokemon_choice() {
             std::cout << "Vous n'avez selectioner aucun des pokemons disponible" << std::endl;
         };
     };
+
+    while (rename_choice == 1) {
+
+        std::cout << "Entre le nouveau nom du pokemon" << std::endl;
+        std::cin >> Default_Pokemon_Name_1;
+        std::cout << "Valider le choix : " << std::endl << "Oui [0] || Non [1]" << std::endl;
+        std::cin >> rename_choice;
+
+        if (rename_choice > 1 || rename_choice < 0) {
+            rename_choice = 0;
+            std::cout << "Vous n'avez selectioner aucune des options disponible" << std::endl;
+        };
+    };
+
 
     return (player_pokemon_id);
 }
