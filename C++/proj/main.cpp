@@ -46,9 +46,6 @@ int main() {
 
     float type_attaque_modifier = type_modifier(Player_Pokemon_Type, Enemy_Pokemon_Type); // Modifie les bonus dégàt en fonction type
 
-    
-    
-
 
     fight(Player_Starter_Name, Player_Starter_Health, Player_Starter_Attack, Player_Starter_Defense, Player_Pokemon_Type, Enemy_starter_Name, Enemy_Starter_Health, Enemy_Starter_Attack, Enemy_Starter_Defense, Enemy_Pokemon_Type); // Lance le combat
 
