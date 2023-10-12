@@ -3,8 +3,9 @@
         {
             "name": "windows-gcc-x64",
             "includePath": [
-                "${workspaceFolder}\\C++\\proj\\include",
-                "${workspaceFolder}\\**"
+                "${workspaceFolder}/C++/proj/include",
+                "${workspaceFolder}/**",
+                "C++/proj/include/"
             ],
             "defines": [
                 "_DEBUG",
