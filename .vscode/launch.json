@@ -16,7 +16,7 @@
       "name": "(gdb) Launch",
       "type": "cppdbg",
       "request": "launch",
-      "program": "enter program name, for example ${workspaceFolder}/a.exe",
+      "program": "enter program name, for example ${workspaceFolder}/C++/proj/output/main.exe",
       "args": [],
       "stopAtEntry": false,
       "cwd": "${fileDirname}",

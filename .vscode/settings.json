@@ -111,6 +111,7 @@
     "xtr1common": "cpp",
     "xutility": "cpp",
     "fstream": "cpp",
-    "string": "cpp"
+    "string": "cpp",
+    "vector": "cpp"
   }
 }
