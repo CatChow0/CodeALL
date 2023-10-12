@@ -295,6 +295,12 @@ std::string current_pokemon_type(int Pokemon_ID) {
     return Pokemon_Type;
 };
 
+// ------------------------------------------------------ //
+// Applique les bonus malus de dégàts en fonction du type //
+// ------------------------------------------------------ //
+
+
+
 // ------ //
 // Combat //
 // ------ //
@@ -306,6 +312,11 @@ void fight(std::string Player_Pokemon_Name, int Player_Pokemon_Health, int Playe
 
     int current_round = 0;
     bool end_of_battle = false;
+    int action_choice;
+
+    int type_modifier = 1;
+
+    switch (type_info)
 
     while (end_of_battle == false) {
         
@@ -329,14 +340,20 @@ void fight(std::string Player_Pokemon_Name, int Player_Pokemon_Health, int Playe
         // std::cin >> current_player_health;
 
         // if (current_player_health <= 0) {
-        //     end_of_battle = true;
-        //     std::cout << "Vous avez perdu" << std::endl;
+        //    end_of_battle = true;
+        //    std::cout << "Vous avez perdu" << std::endl;
         // };
 
         // player_hp_bar.update();
 
         // Début de la phase d'attaque du joueur //
 
+        std::cout << "Attaquer [1] | Objet [2]" << std::endl;
+        std::cin >> action_choice;
+
+        if (action_choice == 1) {
+            int current_player_attack = Player_Pokemon_Attack * type_modifier;
+        };
 
     
     };
@@ -377,6 +394,8 @@ int main() {
     std::cout << "Enemy Pokemon Defense: " << Enemy_Starter_Defense << std::endl;
     std::string Enemy_Pokemon_Type = current_pokemon_type(Enemy_Starter_Id); // Récupère le type
     std::cout << "Enemy Pokemon Type: " << Enemy_Pokemon_Type << std::endl;
+
+    type_modifier(Player_Pokemon_Type, Enemy_Pokemon_Type); // Modifie les bonus dégàt en fonction type
 
     
     
