@@ -123,13 +123,14 @@ void fight(std::string Player_Pokemon_Name, int Player_Pokemon_Health, int Playe
     int action_choice;
 
     int type_bonus = 1;
+    int potion = 3;
 
     while (end_of_battle == false) {
         
         if (current_round == 0) {
             std::cout << "Début du combat" << std::endl; // Début du combat
+            std::cout << "Tour: " << current_round + 1 << std::endl;
         };
-        std::cout << "Tour: " << current_round + 1 << std::endl;
 
         // progressbar player_hp_bar(Player_Pokemon_Health); // Crée un barre de vie pour le joueur
         // player_hp_bar.set_todo_char(" ");
@@ -192,9 +193,21 @@ void fight(std::string Player_Pokemon_Name, int Player_Pokemon_Health, int Playe
                 // player_hp_bar.update();
             };
 
+            current_round++; // incremente le nombre de tour
+
+
+        } else if ( action_choice == 2) {
+            if (potion > 0) {
+                std::cout << "Vous avez : " << potion << std::endl;
+                Player_Pokemon_Health = Player_Pokemon_Health + 15;
+                potion = potion - 1;
+                current_round++; //incremente le nombre de tour
+            } else {
+                std::cout << "Vous n'avez plus de potion" << std::endl;
+            };
             
-
-
+        } else if ( action_choice > 2 || action_choice < 1) {
+            std::cout << "Veuillez choisir un choix entre 1 et 2" << std::endl;
         };
 
     
