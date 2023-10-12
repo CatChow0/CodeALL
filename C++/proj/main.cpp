@@ -4,7 +4,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
-#include <include/progressbar.hpp>
+// #include <include/progressbar.hpp>
 
 // ------------------ //
 // Class des pokemons //
@@ -19,23 +19,7 @@ class Character {
         int health;
         int base_attack;
         int base_defense;
-        
-    
-    class Fire_type {
-        public:
-            bool is_fire = true;
-            char type_fire[20] = "Feu";
-    };
-    class Water_type {
-        public:
-            bool is_water = true;
-            char type_Water[20] = "Eau";
-    };
-    class Plant_type {
-        public:
-            bool is_plant = true;
-            char type_plant[20] = "Plante";
-    };
+        char type[20];
 
 };
 
@@ -58,6 +42,8 @@ void Create_Pokemon() {
     std::cin >> Create_Pokemon.base_attack;
     std::cout << "Entrez la defense de base du Pokemon : ";
     std::cin >> Create_Pokemon.base_defense;
+    std::cout << "Entrez le type du Pokemon : ";
+    std::cin >> Create_Pokemon.type;
     
 
     // Affiche les informations du pokemon creé
@@ -68,6 +54,7 @@ void Create_Pokemon() {
     std::cout << "Vie du Pokemon : " << Create_Pokemon.health << std::endl;
     std::cout << "Base d'attaque du Pokemon : " << Create_Pokemon.base_attack << std::endl;
     std::cout << "Base de defense du Pokemon : " << Create_Pokemon.base_defense << std::endl;
+    std::cout << "Type du Pokemon : " << Create_Pokemon.type << std::endl;
     
 
     // Ouvre ou Crée un fichier pour stocker les pokemons
@@ -79,6 +66,7 @@ void Create_Pokemon() {
     Create_Pokemon_File << "Health: " <<Create_Pokemon.health << std::endl;
     Create_Pokemon_File << "Attack: " <<Create_Pokemon.base_attack << std::endl;
     Create_Pokemon_File << "Defense: " <<Create_Pokemon.base_defense << std::endl;
+    Create_Pokemon_File << "Type: " <<Create_Pokemon.type << std::endl;
     Create_Pokemon_File.close();
 
 };
@@ -140,7 +128,7 @@ int Player_pokemon_choice() {
     std::getline(Pokemon_File, name);       // Récupère la valeur de la variable et écrase le nom de la variable
     Default_Pokemon_Name_1 = name;          // stocke le nom de la deuxieme variable dans la variable Default_Pokemon_Name_1
 
-    for (int i = 0; i < 4; i++) {           // Saute 4 ligne pour récupérer le nom de la variable suviante comme l'écart entre les variable est constants
+    for (int i = 0; i < 5; i++) {           // Saute 4 ligne pour récupérer le nom de la variable suviante comme l'écart entre les variable est constants
         std::getline(Pokemon_File, name); 
     };
 
@@ -148,7 +136,7 @@ int Player_pokemon_choice() {
     std::getline(Pokemon_File, name);
     Default_Pokemon_Name_2 = name;
 
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 5; i++) {
         std::getline(Pokemon_File, name);
     };
 
@@ -245,6 +233,10 @@ std::string Current_Pokemon_Name(int Player_pokemon_Id) {
     return Pokemon_Name;
 };
 
+// ----------------------------- //
+// Récupère les stats du pokemon //
+// ----------------------------- //
+
 int stats(int Pokemon_ID, int stats_ligne) { // stats_ligne = ligne de la stats par rapport a l'ID du pokemon
 
     std::string Id = "Id: ";
@@ -273,6 +265,36 @@ int stats(int Pokemon_ID, int stats_ligne) { // stats_ligne = ligne de la stats 
     return Res_Pokemon_Stats;
 };
 
+// -------------------------- //
+// Récupère le type du pokemon//
+// -------------------------- //
+
+std::string current_pokemon_type(int Pokemon_ID) {
+
+    std::string Id = "Id: ";
+    std::string Pokemon_Id_String = std::to_string(Pokemon_ID); 
+    std::string Id_to_find = Id + Pokemon_Id_String;
+    std::ifstream Pokemon_File;
+    Pokemon_File.open("Pokemon.txt", std::ios::in);
+
+    std::string Pokemon_Type;
+    while (std::getline(Pokemon_File,Pokemon_Type)) { // Va à la ligne de L'ID carrespondant
+        if (Pokemon_Type.find(Id_to_find)!= std::string::npos) {
+            break;
+        };
+    };
+
+    for (int i = 0; i < 4; i++) { // Vas à la ligne du type voulue
+        std::getline(Pokemon_File,Pokemon_Type);
+    
+    };
+    std::getline(Pokemon_File,Pokemon_Type, ' ');
+    std::getline(Pokemon_File,Pokemon_Type);
+    Pokemon_File.close();
+
+    return Pokemon_Type;
+};
+
 // ------ //
 // Combat //
 // ------ //
@@ -288,30 +310,34 @@ void fight(std::string Player_Pokemon_Name, int Player_Pokemon_Health, int Playe
     while (end_of_battle == false) {
         
         if (current_round == 0) {
-            std::cout << "Début du combat" << std::endl;
+            std::cout << "Début du combat" << std::endl; // Début du combat
         };
         std::cout << "Tour: " << current_round + 1 << std::endl;
 
-        progressbar player_hp_bar(Player_Pokemon_Health); // Crée un barre de vie pour le joueur
-        player_hp_bar.set_todo_char(" ");
-        player_hp_bar.set_done_char("█");
-        player_hp_bar.set_opening_bracket_char("[");
-        player_hp_bar.set_closing_bracket_char("]");
+        // progressbar player_hp_bar(Player_Pokemon_Health); // Crée un barre de vie pour le joueur
+        // player_hp_bar.set_todo_char(" ");
+        // player_hp_bar.set_done_char("█");
+        // player_hp_bar.set_opening_bracket_char("[");
+        // player_hp_bar.set_closing_bracket_char("]");
 
-        progressbar enemy_hp_bar(Enemy_Pokemon_Health); // Crée un barre de vie pour l'enemie
-        enemy_hp_bar.set_todo_char(" ");
-        enemy_hp_bar.set_done_char("█");
-        enemy_hp_bar.set_opening_bracket_char("[");
-        enemy_hp_bar.set_closing_bracket_char("]");
+        // progressbar enemy_hp_bar(Enemy_Pokemon_Health); // Crée un barre de vie pour l'enemie
+        // enemy_hp_bar.set_todo_char(" ");
+        // enemy_hp_bar.set_done_char("█");
+        // enemy_hp_bar.set_opening_bracket_char("[");
+        // enemy_hp_bar.set_closing_bracket_char("]");
         
-        std::cin >> current_player_health;
+        // std::cin >> current_player_health;
 
-        if (current_player_health <= 0) {
-            end_of_battle = true;
-            std::cout << "Vous avez perdu" << std::endl;
-        };
+        // if (current_player_health <= 0) {
+        //     end_of_battle = true;
+        //     std::cout << "Vous avez perdu" << std::endl;
+        // };
 
-        player_hp_bar.update();
+        // player_hp_bar.update();
+
+        // Début de la phase d'attaque du joueur //
+
+
     
     };
 
@@ -338,6 +364,8 @@ int main() {
     std::cout << "Player Pokemon Attack: " << Player_Starter_Attack << std::endl;
     int Player_Starter_Defense = stats(Player_Starter_Id, 3); // Récupère la defense
     std::cout << "Player Pokemon Defense: " << Player_Starter_Defense << std::endl;
+    std::string Player_Pokemon_Type = current_pokemon_type(Player_Starter_Id); // Récupère le type
+    std::cout << "Player Pokemon Type: " << Player_Pokemon_Type << std::endl;
 
     std::string Enemy_starter_Name = Current_Pokemon_Name(Enemy_Starter_Id); // Récupère le nom du pokemon de l'enemie
     std::cout << "Enemy Pokemon Name: " << Enemy_starter_Name << std::endl;
@@ -347,6 +375,8 @@ int main() {
     std::cout << "Enemy Pokemon Attack: " << Enemy_Starter_Attack << std::endl;
     int Enemy_Starter_Defense = stats(Enemy_Starter_Id, 3); // Récupère la defense
     std::cout << "Enemy Pokemon Defense: " << Enemy_Starter_Defense << std::endl;
+    std::string Enemy_Pokemon_Type = current_pokemon_type(Enemy_Starter_Id); // Récupère le type
+    std::cout << "Enemy Pokemon Type: " << Enemy_Pokemon_Type << std::endl;
 
     
     

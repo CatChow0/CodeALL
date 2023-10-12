@@ -3,13 +3,16 @@ Nom: Vroum
 Health: 12
 Attack: 9
 Defense: 12
+Type: Feu
 Id: 2
 Nom: Bob
 Health: 15
 Attack: 6
 Defense: 17
+Type: Eau
 Id: 3
 Nom: Patate
 Health: 10
 Attack: 10
 Defense: 10
+Type: Plante
