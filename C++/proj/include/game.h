@@ -1,9 +1,11 @@
+#include "get_data.h"
+
 #include <fstream>
 #include <string>
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
-#include <get_data.h>
+#include <random>
 
 // ---------------------------------------- //
 // Fonction pour choisir le premier pokemon //
@@ -125,82 +127,103 @@ void fight(std::string Player_Pokemon_Name, int Player_Pokemon_Health, int Playe
     int type_bonus = 1;
     int potion = 3;
 
+    std::random_device random;
+    std::mt19937 rng(random());
+    std::uniform_int_distribution<std::mt19937::result_type> dist7(1,7);
+
     while (end_of_battle == false) {
         
         if (current_round == 0) {
-            std::cout << "Début du combat" << std::endl; // Début du combat
+            std::cout << "Debut du combat" << std::endl; // Début du combat
             std::cout << "Tour: " << current_round + 1 << std::endl;
+        } else {
+            std::cout << "Tour : " << current_round << std::endl;
         };
 
-        // progressbar player_hp_bar(Player_Pokemon_Health); // Crée un barre de vie pour le joueur
+        // progressbar player_hp_bar(current_player_health); // Crée un barre de vie pour le joueur
         // player_hp_bar.set_todo_char(" ");
         // player_hp_bar.set_done_char("█");
         // player_hp_bar.set_opening_bracket_char("[");
         // player_hp_bar.set_closing_bracket_char("]");
+        // player_hp_bar.update();
 
-        // progressbar enemy_hp_bar(Enemy_Pokemon_Health); // Crée un barre de vie pour l'enemie
+        // progressbar enemy_hp_bar(current_enemy_health); // Crée un barre de vie pour l'enemie
         // enemy_hp_bar.set_todo_char(" ");
         // enemy_hp_bar.set_done_char("█");
         // enemy_hp_bar.set_opening_bracket_char("[");
         // enemy_hp_bar.set_closing_bracket_char("]");
+        // enemy_hp_bar.update();
         
         // std::cin >> current_player_health;
 
-        // if (current_player_health <= 0) {
-        //    end_of_battle = true;
-        //    std::cout << "Vous avez perdu" << std::endl;
-        // };
-
-        // player_hp_bar.update();
+        if (current_player_health <= 0) {
+            end_of_battle = true;
+            std::cout << "Vous avez perdu" << std::endl;
+            break;
+        };
 
         // Début de la phase d'attaque du joueur //
 
         std::cout << "Attaquer [1] | Objet [2]" << std::endl;
         std::cin >> action_choice;
 
+        
+
         if (action_choice == 1) {
 
             type_bonus = type_modifier(Enemy_Pokemon_Type,Player_Pokemon_Type); // Ajuste le bonus de type pour l'attaque du joueur
-            int current_player_attack = Player_Pokemon_Attack * type_bonus; // Calcul de l'attaque du joueur en fonction de son type
+            int current_player_attack = dist7(rng) + (Player_Pokemon_Attack * type_bonus); // Calcul de l'attaque du joueur en fonction de son type
+            std::cout << "Attaque base du joueur : " << Player_Pokemon_Attack << std::endl;
+            std::cout << "Attaque du joueur : " << current_player_attack << std::endl;
+            std::cout << "Attaque du joueur avec le bonus de type : " << current_player_attack * type_bonus << std::endl;
+            std::cout << "Valeur de la défense du joueur : " << Enemy_Pokemon_Defense << std::endl;
             int final_player_attack = current_player_attack - Enemy_Pokemon_Defense; // Calcul de l'attaque du joueur en fonction de la défense
 
-            Enemy_Pokemon_Health = Enemy_Pokemon_Health - final_player_attack;
+            current_enemy_health = current_enemy_health - abs(final_player_attack); // Valleur absolue du nombre de dégats
             
-            std::cout << Player_Pokemon_Name << " attaque " << Enemy_Pokemon_Name << " avec " << final_player_attack << " points de dégats" << std::endl; // Attaque du joueur afficher dans la console
+            std::cout << Player_Pokemon_Name << " attaque " << Enemy_Pokemon_Name << " avec " << abs(final_player_attack) << " points de degats" << std::endl; // Attaque du joueur afficher dans la console
 
-            if (Enemy_Pokemon_Health <= 0) { // verifie si l'enemie est mort
+            if (current_enemy_health <= 0) { // verifie si l'enemie est mort
                 end_of_battle = true;
                 std::cout << "Vous avez gagner" << std::endl;
             } else {
-                std::cout << Enemy_Pokemon_Name << " reste " << Enemy_Pokemon_Health << " points de vie" << std::endl;
-                // enemy_hp_bar.update();
+                std::cout << Enemy_Pokemon_Name << " reste " << current_enemy_health << " points de vie" << std::endl;
             };
 
             type_bonus = type_modifier(Enemy_Pokemon_Type,Player_Pokemon_Type); // Ajuste le bonus de type pour l'attaque de l'enemie
-            int current_enemy_attack = Enemy_Pokemon_Attack * type_bonus; // Calcul de l'attaque de l'enemie en fonction de son type
+            int current_enemy_attack = dist7(rng) + (Enemy_Pokemon_Attack * type_bonus); // Calcul de l'attaque de l'enemie en fonction de son type
             int final_enemy_attack = current_enemy_attack - Player_Pokemon_Defense; // Calcul de l'attaque de l'enemie en fonction de la défense
             
-            Player_Pokemon_Health = Player_Pokemon_Health - final_enemy_attack;
+            current_player_health = current_player_health - abs(final_enemy_attack); // Valeur absolue du nombre de dégats
             
-            std::cout << Enemy_Pokemon_Name << " attaque " << Player_Pokemon_Name << " avec " << final_enemy_attack << " points de dégats" << std::endl; // Attaque de l'enemie afficher dans la console
+            std::cout << Enemy_Pokemon_Name << " attaque " << Player_Pokemon_Name << " avec " << abs(final_enemy_attack) << " points de degats" << std::endl; // Attaque de l'enemie afficher dans la console
             
             if (Player_Pokemon_Health <= 0) { // verifie si le joueur est mort
             
                 end_of_battle = true;
                 std::cout << "Vous avez perdu" << std::endl;
             } else {
-                std::cout << Player_Pokemon_Name << " reste " << Player_Pokemon_Health << " points de vie" << std::endl;
+                std::cout << Player_Pokemon_Name << " reste " << current_player_health << " points de vie" << std::endl;
                 // player_hp_bar.update();
+                current_round++; // incremente le nombre de tour
             };
 
-            current_round++; // incremente le nombre de tour
+            
 
 
         } else if ( action_choice == 2) {
             if (potion > 0) {
-                std::cout << "Vous avez : " << potion << std::endl;
-                Player_Pokemon_Health = Player_Pokemon_Health + 15;
-                potion = potion - 1;
+                std::cout << "Vous avez : " << potion - 1<< "potion" << std::endl;
+                current_player_health = current_player_health + 15;
+                potion--;
+                type_bonus = type_modifier(Enemy_Pokemon_Type,Player_Pokemon_Type); // Ajuste le bonus de type pour l'attaque de l'enemie
+                int current_enemy_attack = dist7(rng) + (Enemy_Pokemon_Attack * type_bonus); // Calcul de l'attaque de l'enemie en fonction de son type
+                int final_enemy_attack = current_enemy_attack - Player_Pokemon_Defense; // Calcul de l'attaque de l'enemie en fonction de la défense
+            
+                current_player_health = current_player_health - final_enemy_attack;
+            
+                std::cout << Enemy_Pokemon_Name << " attaque " << Player_Pokemon_Name << " avec " << final_enemy_attack << " points de degats" << std::endl; // Attaque de l'enemie afficher dans la console
+
                 current_round++; //incremente le nombre de tour
             } else {
                 std::cout << "Vous n'avez plus de potion" << std::endl;
@@ -214,4 +237,3 @@ void fight(std::string Player_Pokemon_Name, int Player_Pokemon_Health, int Playe
     };
 
 };
-

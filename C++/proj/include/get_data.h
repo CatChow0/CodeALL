@@ -107,9 +107,9 @@ float type_modifier(std::string Attack_Pokemon_Type, std::string Target_Pokemon_
     } else if ( Attack_Pokemon_Type == "Eau" && Target_Pokemon_Type == "Feu") {
         res = 1.25;
     } else if ( Attack_Pokemon_Type == "Plante" && Target_Pokemon_Type == "Eau") {
-        res = 0.75;
-    } else if ( Attack_Pokemon_Type == "Plante" && Target_Pokemon_Type == "Feu") {
         res = 1.25;
+    } else if ( Attack_Pokemon_Type == "Plante" && Target_Pokemon_Type == "Feu") {
+        res = 0.75;
     } else if ( Attack_Pokemon_Type == "Feu" && Target_Pokemon_Type == "Eau") {
         res = 0.75;
     } else if ( Attack_Pokemon_Type == "Feu" && Target_Pokemon_Type == "Plante") {
