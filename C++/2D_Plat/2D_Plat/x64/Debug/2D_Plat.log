@@ -1,2 +1,12 @@
 ﻿  main.cpp
+C:\Users\arivas\source\repos\2D_Plat\2D_Plat\main.cpp(107,81): warning C4244: 'argument' : conversion de 'unsigned int' en 'T', perte possible de données
+          with
+          [
+              T=float
+          ]
+C:\Users\arivas\source\repos\2D_Plat\2D_Plat\main.cpp(107,63): warning C4244: 'argument' : conversion de 'unsigned int' en 'T', perte possible de données
+          with
+          [
+              T=float
+          ]
   2D_Plat.vcxproj -> C:\Users\arivas\source\repos\2D_Plat\x64\Debug\2D_Plat.exe
